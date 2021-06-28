@@ -29,18 +29,9 @@ export default function Header(props) {
     };
     return (
         <div
-            className={getWidth()}
-            style={{
-                backgroundColor: '#b5b5b5',
-                width: '20%',
-                borderRadius: '5px',
-            }}>
-            <div
-                className={styles.headerNormal}
-                style={{ backgroundColor: getColor() }}>
-                <p>{props.value.name}</p>
-            </div>
-            <Task />
+            className={styles.headerNormal}
+            style={{ backgroundColor: getColor() }}>
+            <p>{props.value.name}</p>
         </div>
     );
 }

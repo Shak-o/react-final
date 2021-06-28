@@ -4,9 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomePage from './home-page/Home';
-
+import TaskForm from './task/add-task/TaskForm';
 ReactDOM.render(
     <React.StrictMode>
+        <TaskForm />
         <HomePage />
     </React.StrictMode>,
     document.getElementById('root'),
