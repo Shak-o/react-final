@@ -1,84 +1,17 @@
 import Header from './Header';
-import NavBar from './NavBar';
-import Task from '../task/task-form/Task';
 import React from 'react';
-import TaskForm from '../task/add-task/TaskForm';
-import styles from '../task/add-task/popup.module.css';
+import { useSelector } from 'react-redux';
+import { InProgress } from '../task/add-task/TaskSlice';
+import { NotStarted } from '../task/add-task/TaskSlice';
+import { Closed } from '../task/add-task/TaskSlice';
+import { Ready } from '../task/add-task/TaskSlice';
+import Task from '../task/task-form/Task';
+
 export default function HomePage() {
-    let notStarted = [
-        {
-            id: 'HR-124',
-            name: 'get new points',
-            description:
-                'goto end of the world find dragon kill dragon and etc. etc. etc.',
-            type: 'Dev',
-            status: 'notStarted',
-        },
-        {
-            id: 'HR-15224',
-            name: 'get new points',
-            description:
-                'goto end of the world find dragon kill dragon and etc. etc. etc.',
-            type: 'QA',
-            status: 'notStarted',
-        },
-    ];
-
-    let inProgress = [
-        {
-            id: 'HR-124',
-            name: 'get new points',
-            description:
-                'goto end of the world find dragon kill dragon and etc. etc. etc.',
-            type: 'Dev',
-            status: 'inProgress',
-        },
-        {
-            id: 'HR-1244',
-            name: 'jump from building',
-            description:
-                'goto end of the world find dragon kill dragon and etc. etc. etc.',
-            type: 'QA',
-            status: 'inProgress',
-        },
-    ];
-    let closed = [
-        {
-            id: 'HR-124',
-            name: 'get new points',
-            description:
-                'goto end of the world find dragon kill dragon and etc. etc. etc.',
-            type: 'Dev',
-            status: 'closed',
-        },
-        {
-            id: 'HR-1244',
-            name: 'jump from building',
-            description:
-                'goto end of the world find dragon kill dragon and etc. etc. etc.',
-            type: 'QA',
-            status: 'closed',
-        },
-    ];
-    let ready = [
-        {
-            id: 'HR-124',
-            name: 'get new points',
-            description:
-                'goto end of the world find dragon kill dragon and etc. etc. etc.',
-            type: 'Dev',
-            status: 'ready',
-        },
-        {
-            id: 'HR-1244',
-            name: 'jump from building',
-            description:
-                'goto end of the world find dragon kill dragon and etc. etc. etc.',
-            type: 'QA',
-            status: 'ready',
-        },
-    ];
-
+    const inProgress = useSelector(InProgress);
+    const notStarted = useSelector(NotStarted);
+    const closed = useSelector(Closed);
+    const ready = useSelector(Ready);
     const getWidth = () => {
         if (window.innerWidth < 1896) {
             return 'col-3 mh-100 ms-4 me-4 ps-3 pe-3 pt-1 d-block';
@@ -86,22 +19,9 @@ export default function HomePage() {
             return 'col-3 mh-100 ms-5 me-5 ps-3 pe-3 pt-1 d-block';
         }
     };
-    const backStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        width: '100%',
-        position: 'fixed',
-    };
+
     return (
         <div>
-            <div style={backStyle}>
-                <TaskForm trigger={false} />
-            </div>
-
-            <NavBar />
             <div
                 className="row"
                 style={{ marginTop: 10, height: window.innerHeight }}>
@@ -113,13 +33,13 @@ export default function HomePage() {
                         borderRadius: '5px',
                     }}>
                     <Header value={{ name: 'Not Started' }} />
-                    {notStarted.map((item) => (
+                    {notStarted.map((task) => (
                         <Task
-                            name={item.name}
-                            status={item.status}
-                            id={item.id}
-                            type={item.type}
-                            description={item.description}
+                            name={task.item.name}
+                            status={task.item.status}
+                            id={task.item.id}
+                            type={task.item.type}
+                            description={task.item.description}
                         />
                     ))}
                 </div>
@@ -131,9 +51,15 @@ export default function HomePage() {
                         borderRadius: '5px',
                     }}>
                     <Header value={{ name: 'In Progress' }} />
-                    <Task />
-                    <Task />
-                    <Task />
+                    {inProgress.map((task) => (
+                        <Task
+                            name={task.item.name}
+                            status={task.item.status}
+                            id={task.item.id}
+                            type={task.item.type}
+                            description={task.item.description}
+                        />
+                    ))}
                 </div>
                 <div
                     className={getWidth()}
@@ -143,7 +69,15 @@ export default function HomePage() {
                         borderRadius: '5px',
                     }}>
                     <Header value={{ name: 'Ready' }} />
-                    <Task />
+                    {ready.map((task) => (
+                        <Task
+                            name={task.item.name}
+                            status={task.item.status}
+                            id={task.item.id}
+                            type={task.item.type}
+                            description={task.item.description}
+                        />
+                    ))}
                 </div>
                 <div
                     className={getWidth()}
@@ -153,6 +87,15 @@ export default function HomePage() {
                         borderRadius: '5px',
                     }}>
                     <Header value={{ name: 'Closed' }} />
+                    {closed.map((task) => (
+                        <Task
+                            name={task.item.name}
+                            status={task.item.status}
+                            id={task.item.id}
+                            type={task.item.type}
+                            description={task.item.description}
+                        />
+                    ))}
                 </div>
             </div>
         </div>

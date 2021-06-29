@@ -1,36 +1,74 @@
+import { NavLink } from 'react-router-dom';
+
 export default function Task({ name, status, id, description, type }) {
-    const style = {
-        backgroundColor: 'black',
-        width: '10px',
-        height: '90%',
-    };
+    let nameToDisplay = name;
+    let idToDisplay = id;
+    let descriptionToDisplay = description;
     const task = {
         backgroundColor: '#ffffff',
         display: 'flex',
         borderRadius: '5px',
         position: 'relative',
     };
-    const formatDisplay = () => {};
-    const getStringColor = () => {};
+    const formatDisplay = () => {
+        if (name.length > 30) {
+            nameToDisplay = name.substr(0, 30) + '...';
+        }
+        if (description.length > 40) {
+            descriptionToDisplay = description.substr(0, 40) + '...';
+        }
+        if (id.length > 3) {
+            idToDisplay = id.substr(0, 3) + '...';
+        }
+    };
+    const getStringColor = () => {
+        if (type === 'QA') {
+            return '#ded388';
+        }
+        if (type === 'Dev') {
+            return '#9a65fc';
+        }
+        if (type === 'Feature') {
+            return '#46ec4e';
+        }
+        if (type === 'Epic') {
+            return '#f87092';
+        }
+    };
+
+    const style = {
+        width: '10px',
+        height: '90%',
+        backgroundColor: getStringColor(),
+    };
+    formatDisplay();
     return (
-        <div className="w-100 p-3 h-25 mt-2" style={task}>
-            <hr style={style} className="bg-success" />
-            <h6
-                className="position-relative top-50 start-50 translate-middle mt-1"
-                style={{ width: '40%', margin: 0, padding: 0 }}>
-                {name}
-            </h6>
-            <h6 className="position-absolute ms-3">{id}</h6>
-            <h6
-                className="position-absolute top-0 start-100 translate-middle mt-3 me-4"
-                style={{ marginLeft: '-8%' }}>
-                {type}
-            </h6>
-            <p
-                className="position-relative"
-                style={{ top: '50%', right: '20%', width: '100%' }}>
-                <b>description:</b> {description}
-            </p>
-        </div>
+        <NavLink
+            to={`/edit/` + id}
+            exact
+            style={{
+                textDecoration: 'none',
+                color: 'black',
+            }}>
+            <div className="w-100 p-3 h-25 mt-2" style={task}>
+                <hr style={style} />
+                <h6
+                    className="position-relative top-50 start-50 translate-middle mt-2"
+                    style={{ width: '100%', margin: 0, padding: 0 }}>
+                    {nameToDisplay}
+                </h6>
+                <h6 className="position-absolute ms-3">{idToDisplay}</h6>
+                <h6
+                    className="position-absolute top-0 start-100 translate-middle mt-3 me-4"
+                    style={{ marginLeft: '-8%' }}>
+                    {type}
+                </h6>
+                <p
+                    className="position-relative"
+                    style={{ top: '50%', right: '30%', width: '100%' }}>
+                    <b>description:</b> {descriptionToDisplay}
+                </p>
+            </div>
+        </NavLink>
     );
 }

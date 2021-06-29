@@ -1,14 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+
 import reportWebVitals from './reportWebVitals';
-import HomePage from './home-page/Home';
-import TaskForm from './task/add-task/TaskForm';
+import NavBar from './home-page/NavBar';
+import { BrowserRouter, NavLink, Route, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import UseToken from './authorisation/login/UseToken';
+import Login from './authorisation/login/Login';
+import App from './App';
+
 ReactDOM.render(
     <React.StrictMode>
-        <TaskForm />
-        <HomePage />
+        <App />
     </React.StrictMode>,
     document.getElementById('root'),
 );
