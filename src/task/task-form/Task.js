@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import TaskForm from '../add-task/TaskForm';
 import React from 'react';
 
 export default function Task({ name, status, id, description, type }) {
