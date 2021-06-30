@@ -55,37 +55,58 @@ export default function HomePage() {
                 <div className={getWidth()} style={backgroundStyle}>
                     <Header value={{ name: 'In Progress' }} />
                     {inProgress.map((task) => (
-                        <Task
-                            name={task.item.name}
-                            status={task.item.status}
-                            id={task.item.id}
-                            type={task.item.type}
-                            description={task.item.description}
-                        />
+                        <span
+                            onClick={() => {
+                                setUpdate(
+                                    <TaskForm update={true} task={task} />,
+                                );
+                            }}>
+                            <Task
+                                name={task.item.name}
+                                status={task.item.status}
+                                id={task.item.id}
+                                type={task.item.type}
+                                description={task.item.description}
+                            />
+                        </span>
                     ))}
                 </div>
                 <div className={getWidth()} style={backgroundStyle}>
                     <Header value={{ name: 'Ready' }} />
                     {ready.map((task) => (
-                        <Task
-                            name={task.item.name}
-                            status={task.item.status}
-                            id={task.item.id}
-                            type={task.item.type}
-                            description={task.item.description}
-                        />
+                        <span
+                            onClick={() => {
+                                setUpdate(
+                                    <TaskForm update={true} task={task} />,
+                                );
+                            }}>
+                            <Task
+                                name={task.item.name}
+                                status={task.item.status}
+                                id={task.item.id}
+                                type={task.item.type}
+                                description={task.item.description}
+                            />
+                        </span>
                     ))}
                 </div>
                 <div className={getWidth()} style={backgroundStyle}>
                     <Header value={{ name: 'Closed' }} />
                     {closed.map((task) => (
-                        <Task
-                            name={task.item.name}
-                            status={task.item.status}
-                            id={task.item.id}
-                            type={task.item.type}
-                            description={task.item.description}
-                        />
+                        <span
+                            onClick={() => {
+                                setUpdate(
+                                    <TaskForm update={true} task={task} />,
+                                );
+                            }}>
+                            <Task
+                                name={task.item.name}
+                                status={task.item.status}
+                                id={task.item.id}
+                                type={task.item.type}
+                                description={task.item.description}
+                            />
+                        </span>
                     ))}
                 </div>
             </div>
