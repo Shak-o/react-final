@@ -3,7 +3,6 @@ import TaskForm from '../add-task/TaskForm';
 import React from 'react';
 
 export default function Task({ name, status, id, description, type }) {
-    let up = '';
     let nameToDisplay = name;
     let idToDisplay = id.toString().substr(0, 4) + '...';
     let descriptionToDisplay = description;
@@ -35,24 +34,10 @@ export default function Task({ name, status, id, description, type }) {
             return '#f87092';
         }
     };
-    const getInfo = () => {
-        return (
-            <Task
-                name={name}
-                status={status}
-                id={id}
-                description={description}
-                type={type}
-            />
-        );
-    };
     const style = {
         width: '10px',
         height: '90%',
         backgroundColor: getStringColor(),
-    };
-    const test = (task) => {
-        up = <TaskForm update={true} task={task} />;
     };
     formatDisplay();
     return (

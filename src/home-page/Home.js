@@ -10,7 +10,6 @@ import TaskForm from '../task/add-task/TaskForm';
 
 export default function HomePage() {
     const [update, setUpdate] = useState();
-    let testf = '';
     const inProgress = useSelector(InProgress);
     const notStarted = useSelector(NotStarted);
     const closed = useSelector(Closed);
@@ -28,9 +27,6 @@ export default function HomePage() {
         borderRadius: '5px',
         height: '100%',
         display: 'block',
-    };
-    const test = (task) => {
-        testf = <TaskForm update={true} task={task} />;
     };
     return (
         <div>

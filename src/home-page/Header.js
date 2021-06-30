@@ -1,13 +1,7 @@
 import React from 'react';
 import styles from './header.module.css';
-import Task from '../task/task-form/Task';
 
 export default function Header(props) {
-    //const myStyle = f;
-    const getHeight = () => {
-        return window.innerHeight;
-    };
-
     const getColor = () => {
         if (props.value.name === 'Not Started') {
             return '#ffffff';
@@ -20,13 +14,6 @@ export default function Header(props) {
         }
     };
 
-    const getWidth = () => {
-        if (window.innerWidth < 1896) {
-            return 'col-3 mh-100 ms-4 me-4 ps-3 pe-3 pt-1 d-block';
-        } else {
-            return 'col-3 mh-100 ms-5 me-5 ps-3 pe-3 pt-1 d-block';
-        }
-    };
     return (
         <div
             className={styles.headerNormal}
