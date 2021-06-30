@@ -15,11 +15,9 @@ class NavBar extends Component {
     getPage = (event) => {
         if (event.target.textContent === 'Home') {
             this.setState({ page: <HomePage /> });
-            console.log('clicked Gome');
         }
         if (event.target.textContent === 'Create') {
             this.setState({ page: <TaskForm /> });
-            console.log('clicked Create');
         }
     };
     render() {

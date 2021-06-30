@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom';
+import TaskForm from '../add-task/TaskForm';
+import React from 'react';
 
 export default function Task({ name, status, id, description, type }) {
+    let up = '';
     let nameToDisplay = name;
-    let idToDisplay = id;
+    let idToDisplay = id.toString().substr(0, 4) + '...';
     let descriptionToDisplay = description;
     const task = {
         backgroundColor: '#ffffff',
@@ -16,9 +19,6 @@ export default function Task({ name, status, id, description, type }) {
         }
         if (description.length > 40) {
             descriptionToDisplay = description.substr(0, 40) + '...';
-        }
-        if (id.length > 3) {
-            idToDisplay = id.substr(0, 3) + '...';
         }
     };
     const getStringColor = () => {
@@ -35,11 +35,24 @@ export default function Task({ name, status, id, description, type }) {
             return '#f87092';
         }
     };
-
+    const getInfo = () => {
+        return (
+            <Task
+                name={name}
+                status={status}
+                id={id}
+                description={description}
+                type={type}
+            />
+        );
+    };
     const style = {
         width: '10px',
         height: '90%',
         backgroundColor: getStringColor(),
+    };
+    const test = (task) => {
+        up = <TaskForm update={true} task={task} />;
     };
     formatDisplay();
     return (
@@ -54,7 +67,8 @@ export default function Task({ name, status, id, description, type }) {
                 <hr style={style} />
                 <h6
                     className="position-relative top-50 start-50 translate-middle mt-2"
-                    style={{ width: '100%', margin: 0, padding: 0 }}>
+                    style={{ width: '100%', margin: 0, padding: 0 }}
+                    onClick={console.log('testdd')}>
                     {nameToDisplay}
                 </h6>
                 <h6 className="position-absolute ms-3">{idToDisplay}</h6>
